@@ -1,14 +1,15 @@
 
-
+```bash
 gcloud auth list
 
 gcloud config set compute/region $REGION
 
 export PROJECT_ID=$DEVSHELL_PROJECT_ID
 
-mkdir techcps && cd techcps
+mkdir ArcadeGenius && cd ArcadeGenius
+```
 
-
+```python
 cat > main.py <<'EOF_CP'
 import functions_framework
 
@@ -34,42 +35,45 @@ def hello_http(request):
         name = 'World'
     return 'Hello {}!'.format(name)
 EOF_CP
+```
 
-
+```bash
 cat > requirements.txt <<EOF_CP
 functions-framework==3.*
 EOF_CP
 
-
 sleep 15
+```
 
+```bash
 #!/bin/bash
 
 deploy_function() {
-gcloud functions deploy cf-demo \
-  --gen2 \
-  --runtime=python312 \
-  --entry-point=hello_http \
-  --source . \
-  --region=$REGION \
-  --trigger-http \
-  --allow-unauthenticated --quiet
-  }
-  
-  deploy_success=false
-  
-  while [ "$deploy_success" = false ]; do
-    if deploy_function; then
-      echo "Function deployed successfully (https://www.youtube.com/@techcps).."
-      deploy_success=true
-    else
-      echo "please subscribe to techcps (https://www.youtube.com/@techcps)."
-      sleep 10
-    fi
-  done  
-  
-  
-  echo "Congratulations, you're all done with the lab"
-  echo "Please like share and subscribe to techcps(https://www.youtube.com/@techcps)..."
-  
-  
+  gcloud functions deploy cf-demo \
+    --gen2 \
+    --runtime=python312 \
+    --entry-point=hello_http \
+    --source . \
+    --region=$REGION \
+    --trigger-http \
+    --allow-unauthenticated \
+    --quiet
+}
+
+deploy_success=false
+
+while [ "$deploy_success" = false ]; do
+  if deploy_function; then
+    echo "Function deployed successfully (https://www.youtube.com/@ArcadeGenius-z1).."
+    deploy_success=true
+  else
+    echo "please subscribe to Arcade Genius (https://www.youtube.com/@ArcadeGenius-z1)."
+    sleep 10
+  fi
+done  
+
+echo "Congratulations, you're all done with the lab"
+echo "Please like, share, and subscribe to Arcade Genius (https://www.youtube.com/@ArcadeGenius-z1)..."
+```
+
+
