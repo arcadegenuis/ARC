@@ -1,14 +1,25 @@
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+````markdown
+# Load Balancing and Autoscaling Lab [ARCXXX]
+
+> 🧠 **Revised by: Arcade Genius**  
+> 📺 **Subscribe:** [Arcade Genius YouTube Channel](https://www.youtube.com/@ArcadeGenius-z1)  
+
+---
+
+## 🌐 Set Your Region and Zone
+
+```bash
 export REGION=
+export ZONE=
+````
 
- export ZONE=
+---
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## 🚀 Task 1: Create VM Instances and Configure Apache
 
-#Task 1:
-
-
+```bash
 # Create VM Instance 1
 gcloud compute instances create web1 \
   --zone=$ZONE \
@@ -48,7 +59,6 @@ apt-get install apache2 -y
 service apache2 restart
 echo "<h3>Web Server: web3</h3>" | tee /var/www/html/index.html'
 
-
 # Create a firewall rule for HTTP traffic
 gcloud compute firewall-rules create www-firewall-network-lb \
   --direction=INGRESS \
@@ -58,66 +68,68 @@ gcloud compute firewall-rules create www-firewall-network-lb \
   --rules=tcp:80 \
   --source-ranges=0.0.0.0/0 \
   --target-tags=network-lb-tag
+```
 
+---
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ⚖️ Task 2: Setup Load Balancer with Static IP
 
-
-#Task 2:
-
+```bash
 # Create a static external IP address
 gcloud compute addresses create network-lb-ip-1 \
-    --region=$REGION
+  --region=$REGION
 
 # Create an HTTP health check
 gcloud compute http-health-checks create basic-check
 
 # Create a target pool
 gcloud compute target-pools create www-pool \
-    --region=$REGION --http-health-check basic-check
+  --region=$REGION \
+  --http-health-check basic-check
 
 # Add instances to the target pool
 gcloud compute target-pools add-instances www-pool \
-    --instances=web1,web2,web3 --zone=$ZONE
+  --instances=web1,web2,web3 --zone=$ZONE
 
-# Create a forwarding rule for the load balancer
+# Create a forwarding rule
 gcloud compute forwarding-rules create www-rule \
-    --region=$REGION \
-    --ports=80 \
-    --address=network-lb-ip-1 \
-    --target-pool=www-pool
+  --region=$REGION \
+  --ports=80 \
+  --address=network-lb-ip-1 \
+  --target-pool=www-pool
 
-# Get the IP address of the forwarding rule
+# Get the forwarding rule IP
 IPADDRESS=$(gcloud compute forwarding-rules describe www-rule --region=$REGION --format="json" | jq -r .IPAddress)
+```
 
+---
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+## ⚙️ Task 3: Setup Autoscaling with Instance Template and HTTP Load Balancer
 
-#Task 3:
-
+```bash
 # Create an instance template
 gcloud compute instance-templates create lb-backend-template \
-   --region=$REGION \
-   --network=default \
-   --subnet=default \
-   --tags=allow-health-check,techvine \
-   --machine-type=e2-medium \
-   --image-family=debian-11 \
-   --image-project=debian-cloud \
-   --metadata=startup-script='#!/bin/bash
-     apt-get update
-     apt-get install apache2 -y
-     a2ensite default-ssl
-     a2enmod ssl
-     vm_hostname="$(curl -H "Metadata-Flavor:Google" \
-     http://169.254.169.254/computeMetadata/v1/instance/name)"
-     echo "Page served from: $vm_hostname" | \
-     tee /var/www/html/index.html
-     systemctl restart apache2'
+  --region=$REGION \
+  --network=default \
+  --subnet=default \
+  --tags=allow-health-check,ArcadeGenius \
+  --machine-type=e2-medium \
+  --image-family=debian-11 \
+  --image-project=debian-cloud \
+  --metadata=startup-script='#!/bin/bash
+apt-get update
+apt-get install apache2 -y
+a2ensite default-ssl
+a2enmod ssl
+vm_hostname="$(curl -H "Metadata-Flavor:Google" http://169.254.169.254/computeMetadata/v1/instance/name)"
+echo "Page served from: $vm_hostname" | tee /var/www/html/index.html
+systemctl restart apache2'
 
 # Create a managed instance group
 gcloud compute instance-groups managed create lb-backend-group \
-   --template=lb-backend-template --size=2 --zone=$ZONE
+  --template=lb-backend-template \
+  --size=2 \
+  --zone=$ZONE
 
 # Create a firewall rule for health checks
 gcloud compute firewall-rules create fw-allow-health-check \
@@ -133,9 +145,10 @@ gcloud compute addresses create lb-ipv4-1 \
   --ip-version=IPV4 \
   --global
 
-# Get the IP address of the global address
+# Get the global IP
 IPADDRESS=$(gcloud compute addresses describe lb-ipv4-1 \
-  --format="get(address)" --global)
+  --format="get(address)" \
+  --global)
 
 # Create an HTTP health check
 gcloud compute health-checks create http http-basic-check \
@@ -148,7 +161,7 @@ gcloud compute backend-services create web-backend-service \
   --health-checks=http-basic-check \
   --global
 
-# Add the managed instance group to the backend service
+# Add the instance group to backend service
 gcloud compute backend-services add-backend web-backend-service \
   --instance-group=lb-backend-group \
   --instance-group-zone=$ZONE \
@@ -162,19 +175,28 @@ gcloud compute url-maps create web-map-http \
 gcloud compute target-http-proxies create http-lb-proxy \
   --url-map web-map-http
 
-# Create a forwarding rule for the load balancer
+# Create a forwarding rule
 gcloud compute forwarding-rules create http-content-rule \
   --address=$IPADDRESS \
   --global \
   --target-http-proxy=http-lb-proxy \
   --ports=80
+```
 
+---
 
+## ✅ Lab Completed
 
+🎉 **Congratulations, you're all done with the lab!**
+🔔 Don’t forget to subscribe to [Arcade Genius YouTube Channel](https://www.youtube.com/@ArcadeGenius-z1)
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
-                            Congratulations, you're all done with the lab 😄 Don't forget to subscribe our YouTube Channel😄
-                                        
-                                                                 Thank You!!!!
--------------------------------------------------------------------------------------------------------------------------------------------------------------------
+```txt
+Thank You!
+```
+
+```
+
+--- 
+
