@@ -1,15 +1,20 @@
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+# Set your API key (paste your key after =)
 export API_KEY=
 
-sudo chmod +x techcpsarc122.sh
-./techcpsarc122.sh
+# Make your script executable and run it
+sudo chmod +x ArcadeGeniusArc122.sh
+./ArcadeGeniusArc122.sh
 
 
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-          Congratulations, you're all done with the lab 😄                           Don't forget to subscribe our YouTube Channel😄
-                                        
-                                                                 Thank You!!!!
+  🎉 Congratulations, you're all done with the lab!
+
+📺 Don’t forget to subscribe to our YouTube Channel:
+https://www.youtube.com/@ArcadeGenius-z1
+
+🙏 Thank you!
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------
