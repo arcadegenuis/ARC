@@ -1,4 +1,3 @@
-
 gcloud auth list
 
 export PROJECT_ID=$(gcloud config get-value project)
@@ -12,27 +11,21 @@ gcloud services enable \
   logging.googleapis.com \
   pubsub.googleapis.com
 
-
 sleep 45
 
 gsutil mb -l $REGION gs://$DEVSHELL_PROJECT_ID
 
-
-
 PROJECT_NUMBER=$(gcloud projects list --filter="project_id:$DEVSHELL_PROJECT_ID" --format='value(project_number)')
 SERVICE_ACCOUNT=$(gsutil kms serviceaccount -p $PROJECT_NUMBER)
+
 gcloud projects add-iam-policy-binding $DEVSHELL_PROJECT_ID \
   --member serviceAccount:$SERVICE_ACCOUNT \
   --role roles/pubsub.publisher
 
-
 export BUCKET="gs://$DEVSHELL_PROJECT_ID"
 
-
-
-mkdir ~/techcps && cd $_
+mkdir ~/arcadegenius && cd $_
 touch index.js && touch package.json
-
 
 cat > index.js <<EOF
 const functions = require('@google-cloud/functions-framework');
@@ -43,9 +36,7 @@ functions.cloudEvent('eventStorage', (cloudevent) => {
 });
 EOF
 
-
-sed -i "3c\functions.cloudEvent('$FUNCTION_NAME', eventStorage => {" index.js
-
+sed -i "3c\functions.cloudEvent('\$FUNCTION_NAME', eventStorage => {" index.js
 
 cat > package.json <<EOF
 {
@@ -58,42 +49,36 @@ cat > package.json <<EOF
 }
 EOF
 
-
 #!/bin/bash
 
 deploy_function() {
-  gcloud functions deploy $FUNCTION_NAME \
-  --gen2 \
-  --runtime nodejs20 \
-  --entry-point $FUNCTION_NAME \
-  --source . \
-  --region $REGION \
-  --trigger-bucket $BUCKET \
-  --trigger-location $REGION \
-  --max-instances 2 --quiet
+  gcloud functions deploy \$FUNCTION_NAME \
+    --gen2 \
+    --runtime nodejs20 \
+    --entry-point \$FUNCTION_NAME \
+    --source . \
+    --region \$REGION \
+    --trigger-bucket \$BUCKET \
+    --trigger-location \$REGION \
+    --max-instances 2 --quiet
 }
 
 deploy_success=false
 
-while [ "$deploy_success" = false ]; do
+while [ "\$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully (https://www.youtube.com/@techcps).."
+    echo "Function deployed successfully (https://www.youtube.com/@ArcadeGenius-z1).."
     deploy_success=true
   else
-    echo "please subscribe to techcps (https://www.youtube.com/@techcps)."
+    echo "Please subscribe to Arcade Genius (https://www.youtube.com/@ArcadeGenius-z1)."
     sleep 10
   fi
 done
 
-
-
 cd ..
 
-
-mkdir ~/techcps && cd $_
+mkdir ~/arcadegenius && cd $_
 touch index.js && touch package.json
-
-
 
 cat > index.js <<EOF
 const functions = require('@google-cloud/functions-framework');
@@ -103,10 +88,7 @@ functions.http('helloWorld', (req, res) => {
 });
 EOF
 
-
-sed -i "3c\functions.http('$FUNCTION_NAME', helloWorld => {" index.js
-
-
+sed -i "3c\functions.http('\$FUNCTION_NAME', helloWorld => {" index.js
 
 cat > package.json <<EOF
 {
@@ -119,16 +101,14 @@ cat > package.json <<EOF
 }
 EOF
 
-
-
 #!/bin/bash
 
-gcloud functions deploy $HTTP_FUNCTION \
+gcloud functions deploy \$HTTP_FUNCTION \
   --gen2 \
   --runtime nodejs20 \
-  --entry-point $HTTP_FUNCTION \
+  --entry-point \$HTTP_FUNCTION \
   --source . \
-  --region $REGION \
+  --region \$REGION \
   --trigger-http \
   --timeout 600s \
   --max-instances 2 \
@@ -136,16 +116,12 @@ gcloud functions deploy $HTTP_FUNCTION \
 
 deploy_success=false
 
-while [ "$deploy_success" = false ]; do
+while [ "\$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully (https://www.youtube.com/@techcps).."
+    echo "Function deployed successfully (https://www.youtube.com/@ArcadeGenius-z1).."
     deploy_success=true
   else
-    echo "please subscribe to techcps (https://www.youtube.com/@techcps)."
+    echo "Please subscribe to Arcade Genius (https://www.youtube.com/@ArcadeGenius-z1)."
     sleep 10
   fi
 done
-
-
-
-
