@@ -1,12 +1,19 @@
 
 
+# 🎮 Arcade Hero: Deploying a Go Cloud Function (Gen2)
+
+> ✅ Please like, share & subscribe to [Arcade Genius](https://www.youtube.com/@ArcadeGenius-z1)
+
+---
+
+```bash
 gcloud auth list
 
 gcloud config set compute/region $REGION
 
 export PROJECT_ID=$DEVSHELL_PROJECT_ID
 
-mkdir techcps && cd techcps
+mkdir arcade-genius && cd arcade-genius
 
 cat > function.go <<'EOF_CP'
 package helloworld
@@ -40,8 +47,9 @@ func helloHTTP(w http.ResponseWriter, r *http.Request) {
   fmt.Fprintf(w, "Hello, %s!", html.EscapeString(d.Name))
 }
 EOF_CP
+```
 
-
+```bash
 cat > go.mod <<EOF_CP
 module example.com/gcf
 
@@ -51,32 +59,39 @@ require (
 EOF_CP
 
 sleep 25
+```
 
+```bash
 #!/bin/bash
 
 deploy_function() {
-gcloud functions deploy cf-demo \
-  --gen2 \
-  --runtime go122 \
-  --entry-point HelloHTTP \
-  --source . \
-  --region=$REGION \
-  --trigger-http \
-  --allow-unauthenticated --quiet
+  gcloud functions deploy cf-demo \
+    --gen2 \
+    --runtime go122 \
+    --entry-point HelloHTTP \
+    --source . \
+    --region=$REGION \
+    --trigger-http \
+    --allow-unauthenticated --quiet
 }
 
 deploy_success=false
 
 while [ "$deploy_success" = false ]; do
   if deploy_function; then
-    echo "Function deployed successfully (https://www.youtube.com/@techcps).."
+    echo "Function deployed successfully (https://www.youtube.com/@ArcadeGenius-z1).."
     deploy_success=true
   else
-    echo "please subscribe to techcps (https://www.youtube.com/@techcps)."
+    echo "Please subscribe to Arcade Genius (https://www.youtube.com/@ArcadeGenius-z1)."
     sleep 10
   fi
 done
+```
+
+---
+
+### 🎉 Congratulations, you're all done with the lab!
+
+> 🙌 Please like, share, and subscribe to [Arcade Genius](https://www.youtube.com/@ArcadeGenius-z1)
 
 
-echo "Congratulations, you're all done with the lab"
-echo "Please like share and subscribe to techcps(https://www.youtube.com/@techcps)..."
