@@ -148,7 +148,7 @@ while true; do
 done
 
 # Upload test image
-curl -LO https://raw.githubusercontent.com/Techcps/ARC/master/Monitor%20and%20Manage%20Google%20Cloud%20Resources%3A%20Challenge%20Lab/travel.jpg
+curl -LO https://raw.github.com/arcadegenuis/ARC/blob/main/Monitor%20and%20Manage%20Google%20Cloud%20Resources:%20Challenge%20Lab/Travel.jpg
 gsutil cp travel.jpg gs://$BUCKET_NAME
 
 # Create alerting policy config
