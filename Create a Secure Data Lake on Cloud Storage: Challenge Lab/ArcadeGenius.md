@@ -32,9 +32,9 @@ export ZONE=
 ### ✅ Step 2: Run Script in Cloud Shell
 
 ```bash
-curl -LO https://raw.githubusercontent.com/Techcps/ARC/master/Create%20a%20Secure%20Data%20Lake%20on%20Cloud%20Storage%3A%20Challenge%20Lab/techcps119.sh
-sudo chmod +x techcps119.sh
-./techcps119.sh
+curl -LO https://github.com/arcadegenuis/ARC/blob/main/Create%20a%20Secure%20Data%20Lake%20on%20Cloud%20Storage%3A%20Challenge%20Lab/ArcadeGenius119.sh
+sudo chmod +x ArcadeGenius119.sh
+./ArcadeGenius119.sh
 ```
 
 ---
