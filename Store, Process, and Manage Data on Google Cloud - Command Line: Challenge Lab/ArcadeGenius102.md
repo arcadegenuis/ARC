@@ -15,9 +15,9 @@ export REGION=
 ## 🚨 
 
 ```
-curl -LO raw.githubusercontent.com/Techcps/ARC/master/Store%2C%20Process%2C%20and%20Manage%20Data%20on%20Google%20Cloud%20-%20Command%20Line%3A%20Challenge%20Lab/techcps102.sh
-sudo chmod +x techcps102.sh
-./techcps102.sh
+curl -LO raw.githubusercontent.com/arcadegenuis/ARC/blob/main/Store,%20Process,%20and%20Manage%20Data%20on%20Google%20Cloud%20-%20Command%20Line:%20Challenge%20Lab/ArcadeGenius102.sh
+sudo chmod +x ArcadeGenius102.sh
+./ArcadeGenius102.sh
 ```
 
 ## Congratulations, you're all done with the lab 😄
