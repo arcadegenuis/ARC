@@ -1,11 +1,26 @@
 
-# Get Started with Looker: Challenge Lab [ARC107]
+## ✅ Get Started with Looker: Challenge Lab – ARC107
 
-# Please like share & subscribe to [Techcps](https://www.youtube.com/@techcps)
+🔗 [Lab Link](https://www.cloudskillsboost.google/focuses/62701?parent=catalog)
+📺 [Watch Lab Solution](https://www.youtube.com/@ArcadeGenius-z1)
 
+---
 
-## user_region_view file:
+### ⚠️ Disclaimer
 
+**This script and guide are provided for educational purposes to help you understand the lab services and boost your career. Before using the script, please open and review it to familiarize yourself with Google Cloud services. Ensure that you follow 'Qwiklabs' terms of service and YouTube’s community guidelines. The goal is to enhance your learning experience, not to bypass it.**
+
+---
+
+### © Credit
+
+**DM for credit or removal request. All rights and credits for the original content belong to Google Cloud via the [Google Cloud Skills Boost website](https://www.cloudskillsboost.google/)**
+
+---
+
+## ✅ Required Code Files
+
+### 🗂️ `users_region.view` file:
 
 ```
 view: users_region {
@@ -33,7 +48,10 @@ view: users_region {
   }
 }
 ```
-## trianing_model_view_file:
+
+---
+
+### 🧾 `training.model.lkml` file:
 
 ```
 connection: "bigquery_public_data_looker"
@@ -102,6 +120,23 @@ explore: events {
 }
 ```
 
-## Congratulations, you're all done with the lab 😄
+---
 
-# Thanks for watching :)
+### 🎉 Congratulations, you're all done with the lab!
+
+---
+
+### ✅ YouTube Section
+
+<div align="center" style="padding: 5px;"> 
+  <h3>📺 Don't forget to Like, Share & Subscribe!</h3>  
+  <a href="https://www.youtube.com/@ArcadeGenius-z1"> 
+    <img src="https://img.shields.io/badge/YouTube-Arcade%20Genius-FF0000?style=for-the-badge&logo=youtube&logoColor=white" alt="YouTube Channel"> 
+  </a> 
+</div>
+
+<div align="center" style="padding: 5px;"> 
+  <h3>Thanks for watching and stay connected 🙂</h3> 
+</div>
+
+---
