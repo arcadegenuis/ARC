@@ -3,7 +3,7 @@
 ## ✅ Create a Secure Data Lake on Cloud Storage: Challenge Lab – ARC119
 
 [Lab Link](https://www.cloudskillsboost.google/focuses/63857?parent=catalog)
-📺 [Watch Lab Solution](https://youtu.be/PbIfliCwHQw)
+
 
 ---
 
