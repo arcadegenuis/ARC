@@ -2,7 +2,7 @@
 ## ✅ Create a Streaming Data Lake on Cloud Storage: Challenge Lab – ARC110
 
 [Lab Link](https://www.cloudskillsboost.google/focuses/62701?parent=catalog)
-📺 [Watch Lab Solution](https://youtu.be/tdMIj1aOunM)
+
 
 ---
 
