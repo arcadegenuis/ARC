@@ -32,11 +32,7 @@ sudo chmod +x ArcadeGenius.sh
 
 ---
 
-### ❌ Removed Social Media Links
-
-As per your saved instructions, all Telegram, LinkedIn, X, Instagram, Facebook, and WhatsApp links have been removed.
-
----
+### 
 
 ### ✅ YouTube Section (as per your standard):
 
