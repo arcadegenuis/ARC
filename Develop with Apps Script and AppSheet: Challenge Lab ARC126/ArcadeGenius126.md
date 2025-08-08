@@ -28,7 +28,7 @@
 
 ### ✅ Step 2: Download Required File
 
-📥 [Download Excel File from GitHub](https://github.com/Techcps/ARC/blob/main/Develop%20with%20Apps%20Script%20and%20AppSheet%3A%20Challenge%20Lab%20ARC126/Techcps.xlsx)
+📥 [Download Excel File from GitHub](https://github.com/arcadegenuis/ARC/blob/main/Develop%20with%20Apps%20Script%20and%20AppSheet%3A%20Challenge%20Lab%20ARC126/ArcadeGenius.xlsx)
 
 ---
 
