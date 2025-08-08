@@ -2,7 +2,7 @@
 ## ✅ **Configure Service Accounts and IAM for Google Cloud: Challenge Lab - ARC134**
 
 [Lab Link](https://www.cloudskillsboost.google/focuses/67219?parent=catalog)
-📺 [Watch Lab Solution](https://youtu.be/4GgCqG6AJ_w)
+
 
 ---
 
